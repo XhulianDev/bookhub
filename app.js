@@ -52,7 +52,7 @@ const renderBookCatalog = () => {
 	const htmlOutput = bookCatalog.map((book) => {
 		return `
 			<div class="book-card" data-id="${book.id}">
-				<img src="${book.imageLink}" alt="${book.title}">
+				<img src="${book.imageLink}" alt="${book.title}" loading="lazy">
 				<h3>${book.title}</h3>
 				<p>By: ${book.author}</p>
 				<p>${book.shortDescription}</p>

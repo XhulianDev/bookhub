@@ -29,7 +29,7 @@ const bookCatalog = [
 		publicationYear: 1774,
 		shortDescription: "A passionate young man's unrequited love for an engaged woman leads to self-destruction.",
 		description: "A key work of the Sturm und Drang movement that profoundly influenced European Romanticism, told entirely through letters",
-		imageLink: "assets/werther.jpg",
+		imageLink: "assets/werther.webp",
 		quiz: []
 	},
 	{
@@ -46,6 +46,7 @@ const bookCatalog = [
 ];
 
 const bookListContainer = document.getElementById("book-list");
+const filterButtonsContainer = document.getElementById("filter-buttons");
 
 const renderBookCatalog = () => {
 	const htmlOutput = bookCatalog.map((book) => {
@@ -63,3 +64,23 @@ const renderBookCatalog = () => {
 }
 
 renderBookCatalog();
+
+const renderFilterButtons = () => {
+	const allGenres = bookCatalog.map((book) => {
+		return book.genre;
+	})
+
+	const mySet = new Set(allGenres);
+
+	const uniqueGenres = [...mySet];
+
+	const buttonsHTML = uniqueGenres.map((genre) => {
+		return `
+			<button data-genre="${genre}">${genre}</button>
+		`
+	}).join('');
+
+	filterButtonsContainer.innerHTML = buttonsHTML;
+}
+
+renderFilterButtons();

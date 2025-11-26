@@ -74,6 +74,8 @@ const renderFilterButtons = () => {
 
 	const uniqueGenres = [...mySet];
 
+	uniqueGenres.unshift('All');
+
 	const buttonsHTML = uniqueGenres.map((genre) => {
 		return `
 			<button data-genre="${genre}">${genre}</button>
@@ -97,7 +99,13 @@ const attachFilterListeners = () => {
 	});
 };
 
+attachFilterListeners();
+
 const filterBooks = (genre) => {
+	if (genre === 'All') {
+		return renderBookCatalog();
+	}
+
 	const filteredBooks = bookCatalog.filter((book) => {
 		return book.genre === genre;
 	});

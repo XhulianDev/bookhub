@@ -48,8 +48,8 @@ const bookCatalog = [
 const bookListContainer = document.getElementById("book-list");
 const filterButtonsContainer = document.getElementById("filter-buttons");
 
-const renderBookCatalog = () => {
-	const htmlOutput = bookCatalog.map((book) => {
+const renderBookCatalog = (booksToRender = bookCatalog) => {
+	const htmlOutput = booksToRender.map((book) => {
 		return `
 			<div class="book-card" data-id="${book.id}">
 				<img src="${book.imageLink}" alt="${book.title}" loading="lazy">
@@ -84,3 +84,23 @@ const renderFilterButtons = () => {
 }
 
 renderFilterButtons();
+
+const attachFilterListeners = () => {
+	const filterButtons = filterButtonsContainer.querySelectorAll('button');
+
+	filterButtons.forEach((button) => {
+		button.addEventListener("click", (event) => {
+			const selectedGenre = event.target.dataset.genre;
+
+			filterBooks(selectedGenre);
+		});
+	});
+};
+
+const filterBooks = (genre) => {
+	const filteredBooks = bookCatalog.filter((book) => {
+		return book.genre === genre;
+	});
+
+	renderBookCatalog(filteredBooks);
+};

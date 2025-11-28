@@ -112,3 +112,25 @@ const filterBooks = (genre) => {
 
 	renderBookCatalog(filteredBooks);
 };
+
+const attachSearchListener = () => {
+	const searchInput = document.getElementById("search-input");
+
+	searchInput.addEventListener("input", (event) => {
+		handleSearch();
+	});
+};
+
+const handleSearch = () => {
+	const searchInput = document.getElementById("search-input");
+		const searchTerm = searchInput.value;
+	const standardizedTerm = searchTerm.toLowerCase();
+
+	const filteredBooks = bookCatalog.filter((book) => {
+		return book.title.toLowerCase().includes(standardizedTerm);
+	});
+
+	renderBookCatalog(filteredBooks);
+};
+
+attachSearchListener();

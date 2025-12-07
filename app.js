@@ -118,7 +118,7 @@ const renderBookDetails = (book) => {
 	const detailContainer = document.getElementById('book-details-container');
 
     detailContainer.innerHTML = `
-        <button id="back-button">Kthehu mbrapa</button>
+        <button id="back-button">Back</button>
         <h2>${book.title}</h2>
         <p>Autori: ${book.author}</p>
         <p>Zhanri: ${book.genre}</p>

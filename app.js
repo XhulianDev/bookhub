@@ -1,4 +1,7 @@
-const bookCatalog = [
+import { appState } from './state.js';
+import { updateDisplay } from './logic.js';
+
+export const bookCatalog = [
 	{
 		id: 1,
 		title: "Crime and Punishment",
@@ -45,10 +48,13 @@ const bookCatalog = [
 	}
 ];
 
-const bookListContainer = document.getElementById("book-list");
-const filterButtonsContainer = document.getElementById("filter-buttons");
+const bookListContainer = document.getElementById('book-list');
+const filterButtonsContainer = document.getElementById('filter-buttons');
+const catalogSection = document.getElementById('catalog-section');
+const detailsSection = document.getElementById('details-section');
+const searchInput = document.getElementById('search-input');
 
-const renderBookCatalog = (booksToRender = bookCatalog) => {
+export const renderBookCatalog = (booksToRender = bookCatalog) => {
 	const htmlOutput = booksToRender.map((book) => {
 		return `
 			<div class="book-card" data-id="${book.id}">
@@ -61,9 +67,7 @@ const renderBookCatalog = (booksToRender = bookCatalog) => {
 	}).join('');
 
 	bookListContainer.innerHTML = htmlOutput;
-}
-
-renderBookCatalog();
+};
 
 const renderFilterButtons = () => {
 	const allGenres = bookCatalog.map((book) => {
@@ -83,54 +87,71 @@ const renderFilterButtons = () => {
 	}).join('');
 
 	filterButtonsContainer.innerHTML = buttonsHTML;
-}
-
-renderFilterButtons();
-
-const attachFilterListeners = () => {
-	const filterButtons = filterButtonsContainer.querySelectorAll('button');
-
-	filterButtons.forEach((button) => {
-		button.addEventListener("click", (event) => {
-			const selectedGenre = event.target.dataset.genre;
-
-			filterBooks(selectedGenre);
-		});
-	});
 };
 
-attachFilterListeners();
+const attachFilterListeners = () => {
+	filterButtonsContainer.addEventListener("click", (event) => {
+		const selectedGenre = event.target.dataset.genre;
 
-const filterBooks = (genre) => {
-	if (genre === 'All') {
-		return renderBookCatalog();
-	}
+		appState.selectedGenre = selectedGenre;
 
-	const filteredBooks = bookCatalog.filter((book) => {
-		return book.genre === genre;
+		updateDisplay();
 	});
-
-	renderBookCatalog(filteredBooks);
 };
 
 const attachSearchListener = () => {
-	const searchInput = document.getElementById("search-input");
-
 	searchInput.addEventListener("input", (event) => {
-		handleSearch();
+		appState.searchTerm = searchInput.value.toLowerCase();
+
+		updateDisplay();
 	});
 };
 
-const handleSearch = () => {
-	const searchInput = document.getElementById("search-input");
-		const searchTerm = searchInput.value;
-	const standardizedTerm = searchTerm.toLowerCase();
-
-	const filteredBooks = bookCatalog.filter((book) => {
-		return book.title.toLowerCase().includes(standardizedTerm);
-	});
-
-	renderBookCatalog(filteredBooks);
+const findBookById = (bookId) => {
+    return bookCatalog.find(book => book.id === +bookId);
 };
 
+const renderBookDetails = (book) => {
+	catalogSection.classList.add('hidden');
+	detailsSection.classList.remove('hidden');
+
+	const detailContainer = document.getElementById('book-details-container');
+
+    detailContainer.innerHTML = `
+        <button id="back-button">Kthehu mbrapa</button>
+        <h2>${book.title}</h2>
+        <p>Autori: ${book.author}</p>
+        <p>Zhanri: ${book.genre}</p>
+        <img src="${book.imageLink}" alt="${book.title}" style="max-width: 200px;">
+        <p>${book.description}</p>
+    `;
+
+    document.getElementById('back-button').addEventListener('click', hideBookDetails);
+};
+
+const attachBookClickListener = () => {
+    bookListContainer.addEventListener("click", (event) => {
+
+        const clickedBookCard = event.target.closest('.book-card');
+        if (!clickedBookCard) return;
+
+        const bookId = clickedBookCard.dataset.id;
+        
+        const selectedBook = findBookById(bookId);
+        
+        if (selectedBook) {
+            renderBookDetails(selectedBook);
+        }
+    });
+};
+
+const hideBookDetails = () => {
+	catalogSection.classList.remove('hidden');
+	detailsSection.classList.add('hidden');
+};
+
+renderFilterButtons();
+attachFilterListeners();
 attachSearchListener();
+updateDisplay();
+attachBookClickListener();

@@ -72,7 +72,7 @@ export const renderBookCatalog = (booksToRender = bookCatalog) => {
 const renderFilterButtons = () => {
 	const allGenres = bookCatalog.map((book) => {
 		return book.genre;
-	})
+	});
 
 	const mySet = new Set(allGenres);
 
@@ -120,8 +120,8 @@ const renderBookDetails = (book) => {
     detailContainer.innerHTML = `
         <button id="back-button">Back</button>
         <h2>${book.title}</h2>
-        <p>Autori: ${book.author}</p>
-        <p>Zhanri: ${book.genre}</p>
+        <p>Author: ${book.author}</p>
+        <p>Genre: ${book.genre}</p>
         <img src="${book.imageLink}" alt="${book.title}" style="max-width: 200px;">
         <p>${book.description}</p>
     `;
@@ -141,7 +141,7 @@ const attachBookClickListener = () => {
         
         if (selectedBook) {
             renderBookDetails(selectedBook);
-        }
+        };
     });
 };
 

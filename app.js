@@ -82,10 +82,10 @@ const renderFilterButtons = () => {
 
 	const buttonsHTML = uniqueGenres.map((genre) => {
 
-		const className = genre === appState.selectedGenre ? 'active' : '';
-
+		const activeClass = genre === appState.selectedGenre ? ' active' : '';
+		
 		return `
-			<button class="${className}" data-genre="${genre}">${genre}</button>
+			<button class="genre-button${activeClass}" data-genre="${genre}">${genre}</button>
 		`;
 	}).join('');
 
@@ -93,14 +93,21 @@ const renderFilterButtons = () => {
 };
 
 const attachFilterListeners = () => {
-	filterButtonsContainer.addEventListener("click", (event) => {
-		const selectedGenre = event.target.dataset.genre;
+    filterButtonsContainer.addEventListener("click", (event) => {
+        const selectedGenre = event.target.dataset.genre;
+        if (!selectedGenre) return;
 
-		appState.selectedGenre = selectedGenre;
+        const allButtons = document.querySelectorAll('.genre-button');
+        allButtons.forEach(btn => btn.classList.remove('active'));
 
-		updateDisplay();
-	});
+        event.target.classList.add('active');
+
+        appState.selectedGenre = selectedGenre;
+
+        updateDisplay();
+    });
 };
+
 
 const attachSearchListener = () => {
 	searchInput.addEventListener("input", (event) => {

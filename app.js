@@ -54,8 +54,8 @@ const catalogSection = document.getElementById('catalog-section');
 const detailsSection = document.getElementById('details-section');
 const searchInput = document.getElementById('search-input');
 
-export const renderBookCatalog = (booksToRender = bookCatalog) => {
-	const htmlOutput = booksToRender.map((book) => {
+export const renderBookCatalog = (bookToRender = bookCatalog) => {
+	const htmlOutput = bookToRender.map((book) => {
 		return `
 			<div class="book-card" data-id="${book.id}">
 				<img src="${book.imageLink}" alt="${book.title}" loading="lazy">
@@ -81,9 +81,12 @@ const renderFilterButtons = () => {
 	uniqueGenres.unshift('All');
 
 	const buttonsHTML = uniqueGenres.map((genre) => {
+
+		const className = genre === appState.selectedGenre ? 'active' : '';
+
 		return `
-			<button data-genre="${genre}">${genre}</button>
-		`
+			<button class="${className}" data-genre="${genre}">${genre}</button>
+		`;
 	}).join('');
 
 	filterButtonsContainer.innerHTML = buttonsHTML;

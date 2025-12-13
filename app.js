@@ -11,7 +11,13 @@ export const bookCatalog = [
 		shortDescription: "A desperate student commits murder, then grapples with intense moral and psychological turmoil.",
 		description: "The novel explores themes of redemption, guilt, and the social philosophy that justifies evil deeds. It is considered a foundational work of existentialist literature.",
 		imageLink: "assets/crime_punishment.jpg",
-		quiz: []
+		quiz: [
+			{
+				question: "What is the name of the protagonist who commits the murder?",
+				options: ["Dmitri Karamazov", "Raskolnikov", "Prince Mishkin", "Levin"],
+				answer: "Raskolnikov"
+			}
+		]
 	},
 	{
 		id: 2,
@@ -22,7 +28,13 @@ export const bookCatalog = [
 		shortDescription: "The tragic romance between an aristocratic woman and a cavalry officer, set against Russian high society.",
 		description: "Tolstoy examines adultery, jealousy, faith, and the social hypocrisy of 19th-century Russia. Often cited as one of the greatest works of realist fiction.",
 		imageLink: "assets/anna_karenina.jpg",
-		quiz: []
+		quiz: [
+			{
+				question: "In which city does Anna Karenina's story primarily begin?",
+				options: ["Moscow", "St. Petersburg", "Paris", "Orygol"],
+				answer: "Moscow"
+			}
+		]
 	},
 	{
 		id: 3,
@@ -83,7 +95,7 @@ const renderFilterButtons = () => {
 	const buttonsHTML = uniqueGenres.map((genre) => {
 
 		const activeClass = genre === appState.selectedGenre ? ' active' : '';
-		
+
 		return `
 			<button class="genre-button${activeClass}" data-genre="${genre}">${genre}</button>
 		`;
@@ -108,7 +120,6 @@ const attachFilterListeners = () => {
     });
 };
 
-
 const attachSearchListener = () => {
 	searchInput.addEventListener("input", (event) => {
 		appState.searchTerm = searchInput.value.toLowerCase();
@@ -127,6 +138,8 @@ const renderBookDetails = (book) => {
 
 	const detailContainer = document.getElementById('book-details-container');
 
+	const quizButtonHTML = book.quiz.length > 0 ? '<button id="start-quiz-button">Start Quiz</button>' : '';
+
     detailContainer.innerHTML = `
         <button id="back-button">Back</button>
         <h2>${book.title}</h2>
@@ -134,9 +147,14 @@ const renderBookDetails = (book) => {
         <p>Genre: ${book.genre}</p>
         <img src="${book.imageLink}" alt="${book.title}" style="max-width: 200px;">
         <p>${book.description}</p>
+        ${quizButtonHTML}
     `;
 
     document.getElementById('back-button').addEventListener('click', hideBookDetails);
+
+    if (book.quiz.length > 0) {
+    	document.getElementById('start-quiz-button').addEventListener('click', startQuiz);
+    };
 };
 
 const attachBookClickListener = () => {
@@ -147,6 +165,8 @@ const attachBookClickListener = () => {
 
         const bookId = clickedBookCard.dataset.id;
         
+        appstate.selectedBookId = +bookId;
+
         const selectedBook = findBookById(bookId);
         
         if (selectedBook) {
@@ -159,6 +179,10 @@ const hideBookDetails = () => {
 	catalogSection.classList.remove('hidden');
 	detailsSection.classList.add('hidden');
 };
+
+const startQuiz = () => {
+
+}
 
 renderFilterButtons();
 attachFilterListeners();

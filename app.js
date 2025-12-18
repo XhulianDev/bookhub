@@ -165,7 +165,7 @@ const attachBookClickListener = () => {
 
         const bookId = clickedBookCard.dataset.id;
         
-        appstate.selectedBookId = +bookId;
+        appState.selectedBookId = +bookId;
 
         const selectedBook = findBookById(bookId);
         
@@ -181,8 +181,35 @@ const hideBookDetails = () => {
 };
 
 const startQuiz = () => {
+	const bookId = appState.selectedBookId;
+	appState.view = 'quiz';
+	renderQuiz(bookId);
+};
 
-}
+const renderQuiz = (bookId) => {
+	const book = findBookById(bookId);
+	const quizSection = document.getElementById('quiz-section');
+
+	detailsSection.classList.add('hidden');
+	quizSection.classList.remove('hidden');
+
+	quizSection.innerHTML = `
+		<h2>Quiz: ${book.title}</h2>
+		<div id="question-container">
+			<p>${book.quiz[0].question}</p>
+			${book.quiz[0].options.map(option => `
+				<button class="quiz-option">${option}</button>
+			`).join('')}
+		</div>
+		<button id="cancel-quiz">Cancel Quiz</button>
+	`;
+
+	document.getElementById('cancel-quiz').addEventListener('click', () => {
+		quizSection.classsList.add('hidden');
+		detailSection.classList.remove('hidden');
+		appState.view = 'details';
+	});
+};
 
 renderFilterButtons();
 attachFilterListeners();

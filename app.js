@@ -65,6 +65,7 @@ const searchInput = document.getElementById('search-input');
 export const renderBookCatalog = (bookToRender = bookCatalog) => {
 	if (bookToRender.length === 0) {
 			bookListContainer.innerHTML = '<h3 class="no-results">Book not found</h3>';
+			return;
 		}
 		
 		const htmlOutput = bookToRender.map((book) => {
@@ -115,6 +116,10 @@ const attachFilterListeners = () => {
         event.target.classList.add('active');
 
         appState.selectedGenre = selectedGenre;
+
+        appState.searchTerm = "";
+
+        searchInput.value = "";
 
         updateDisplay();
     });

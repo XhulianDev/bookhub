@@ -10,7 +10,6 @@ export const bookCatalog = [
 		publicationYear: 1866,
 		shortDescription: "A desperate student commits murder, then grapples with intense moral and psychological turmoil.",
 		description: "The novel explores themes of redemption, guilt, and the social philosophy that justifies evil deeds. It is considered a foundational work of existentialist literature.",
-		imageLink: "assets/crime_punishment.jpg",
 		quiz: [
 			{
 				question: "What is the name of the protagonist who commits the murder?",
@@ -27,7 +26,6 @@ export const bookCatalog = [
 		publicationYear: 1877,
 		shortDescription: "The tragic romance between an aristocratic woman and a cavalry officer, set against Russian high society.",
 		description: "Tolstoy examines adultery, jealousy, faith, and the social hypocrisy of 19th-century Russia. Often cited as one of the greatest works of realist fiction.",
-		imageLink: "assets/anna_karenina.jpg",
 		quiz: [
 			{
 				question: "In which city does Anna Karenina's story primarily begin?",
@@ -44,7 +42,6 @@ export const bookCatalog = [
 		publicationYear: 1774,
 		shortDescription: "A passionate young man's unrequited love for an engaged woman leads to self-destruction.",
 		description: "A key work of the Sturm und Drang movement that profoundly influenced European Romanticism, told entirely through letters",
-		imageLink: "assets/werther.webp",
 		quiz: []
 	},
 	{
@@ -55,9 +52,8 @@ export const bookCatalog = [
 		publicationYear: 1915,
 		shortDescription: "A traveling salesman wakes up one morning to find himself inexplicably transformed into a massive insect",
 		description: "An exploration of alienation, anxiety, and the absurdity of modern life, focusing on themes of isolation and the breakdown of communication.",
-		imageLink: "assets/metamorphosis.jpg",
 		quiz: []
-	}
+	},
 ];
 
 const bookListContainer = document.getElementById('book-list');
@@ -67,15 +63,19 @@ const detailsSection = document.getElementById('details-section');
 const searchInput = document.getElementById('search-input');
 
 export const renderBookCatalog = (bookToRender = bookCatalog) => {
-	const htmlOutput = bookToRender.map((book) => {
-		return `
-			<div class="book-card" data-id="${book.id}">
-				<img src="${book.imageLink}" alt="${book.title}" loading="lazy">
-				<h3>${book.title}</h3>
-				<p>By: ${book.author}</p>
-				<p>${book.shortDescription}</p>
-			</div>
-		`;
+	if (bookToRender.length === 0) {
+			bookListContainer.innerHTML = '<h3 class="no-results">Book not found</h3>';
+		}
+		
+		const htmlOutput = bookToRender.map((book) => {
+			return `
+				<div class="book-card" data-id="${book.id}">
+					<img src="assets/book-${book.id}.webp" alt="${book.title}" loading="lazy">
+					<h3>${book.title}</h3>
+					<p>By: ${book.author}</p>
+					<p>${book.shortDescription}</p>
+				</div>
+			`;
 	}).join('');
 
 	bookListContainer.innerHTML = htmlOutput;
@@ -145,7 +145,7 @@ const renderBookDetails = (book) => {
         <h2>${book.title}</h2>
         <p>Author: ${book.author}</p>
         <p>Genre: ${book.genre}</p>
-        <img src="${book.imageLink}" alt="${book.title}" style="max-width: 200px;">
+        <img src="assets/book-${book.id}.webp" alt="${book.title}" style="max-width: 200px;">
         <p>${book.description}</p>
         ${quizButtonHTML}
     `;
@@ -170,6 +170,7 @@ const attachBookClickListener = () => {
         const selectedBook = findBookById(bookId);
         
         if (selectedBook) {
+        	appState.view = 'details';
             renderBookDetails(selectedBook);
         };
     });
@@ -205,14 +206,16 @@ const renderQuiz = (bookId) => {
 	`;
 
 	document.getElementById('cancel-quiz').addEventListener('click', () => {
-		quizSection.classsList.add('hidden');
-		detailSection.classList.remove('hidden');
+		quizSection.classList.add('hidden');
+		detailsSection.classList.remove('hidden');
 		appState.view = 'details';
 	});
 };
 
-renderFilterButtons();
-attachFilterListeners();
-attachSearchListener();
-updateDisplay();
-attachBookClickListener();
+document.addEventListener('DOMContentLoaded', () => {
+	renderFilterButtons();
+	attachFilterListeners();
+	attachSearchListener();
+	attachBookClickListener();
+	updateDisplay();
+});

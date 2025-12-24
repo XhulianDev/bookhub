@@ -42,7 +42,13 @@ export const bookCatalog = [
 		publicationYear: 1774,
 		shortDescription: "A passionate young man's unrequited love for an engaged woman leads to self-destruction.",
 		description: "A key work of the Sturm und Drang movement that profoundly influenced European Romanticism, told entirely through letters",
-		quiz: []
+		quiz: [
+		    {
+		        question: "What form of writing is used to tell Werther's story?",
+		        options: ["Poetry", "Diary entries", "Letters (Epistolary)", "Third-person narration"],
+		        answer: "Letters (Epistolary)"
+		    }
+		]
 	},
 	{
 		id: 4,
@@ -52,7 +58,13 @@ export const bookCatalog = [
 		publicationYear: 1915,
 		shortDescription: "A traveling salesman wakes up one morning to find himself inexplicably transformed into a massive insect",
 		description: "An exploration of alienation, anxiety, and the absurdity of modern life, focusing on themes of isolation and the breakdown of communication.",
-		quiz: []
+		quiz: [
+		    {
+		        question: "What is Gregor Samsa's profession before his transformation?",
+		        options: ["Traveling salesman", "Bank clerk", "Doctor", "Teacher"],
+		        answer: "Traveling salesman"
+		    }
+		]
 	},
 ];
 

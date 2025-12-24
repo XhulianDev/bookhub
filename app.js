@@ -66,6 +66,66 @@ export const bookCatalog = [
 		    }
 		]
 	},
+	{
+	    id: 5,
+	    title: "Notes from Underground",
+	    author: "Fyodor Dostoevsky",
+	    genre: "Novel / Psychological Fiction",
+	    shortDescription: "A bitter and profound exploration of the human psyche from the perspective of a social recluse.",
+	    description: "An unnamed narrator retreats from society, offering a bitter and profound exploration of the human psyche.",
+	    quiz: [
+	        {
+	            question: "How is the narrator of the book often referred to?",
+	            options: ["The Underground Man", "The Silent Witness", "The Rebel", "The Hermit"],
+	            answer: "The Underground Man"
+	        }
+	    ]
+	},
+	{
+	    id: 6,
+	    title: "Madame Bovary",
+	    author: "Gustave Flaubert",
+	    genre: "Novel / Realism",
+	    shortDescription: "A tragic tale of a woman's struggle against the banality of provincial life.",
+	    description: "The tragic story of Emma Bovary, who seeks escape from her mundane life through romantic fantasies and excess.",
+	    quiz: [
+	        {
+	            question: "In which country is the story set?",
+	            options: ["Italy", "France", "England", "Germany"],
+	            answer: "France"
+	        }
+	    ]
+	},
+	{
+	    id: 7,
+	    title: "Frankenstein",
+	    author: "Mary Shelley",
+	    genre: "Epistolary Novel / Romanticism",
+	    shortDescription: "A scientist's ambitious experiment leads to the creation of a monstrous being.",
+	    description: "A scientist creates a sentient creature in an unorthodox scientific experiment, leading to tragic consequences.",
+	    quiz: [
+	        {
+	            question: "Who is the narrator at the beginning of the novel?",
+	            options: ["Victor Frankenstein", "The Creature", "Robert Walton", "Elizabeth Lavenza"],
+	            answer: "Robert Walton"
+	        }
+	    ]
+	},
+	{
+	    id: 8,
+	    title: "The Stranger",
+	    author: "Albert Camus",
+	    genre: "Novella / Absurdism",
+	    shortDescription: "An exploration of existential meaninglessness through the eyes of a detached narrator.",
+	    description: "Through the story of Meursault, Camus explores the absurdity of life and the indifference of the universe.",
+	    quiz: [
+	        {
+	            question: "What is the famous opening line of the book about?",
+	            options: ["A wedding", "A murder", "His mother's death", "A lost job"],
+	            answer: "His mother's death"
+	        }
+	    ]
+	}
 ];
 
 const bookListContainer = document.getElementById('book-list');
@@ -162,7 +222,7 @@ const renderBookDetails = (book) => {
         <h2>${book.title}</h2>
         <p>Author: ${book.author}</p>
         <p>Genre: ${book.genre}</p>
-        <img src="assets/book-${book.id}.webp" alt="${book.title}" style="max-width: 200px;">
+        <img src="assets/book-${book.id}.webp" alt="${book.title}">
         <p>${book.description}</p>
         ${quizButtonHTML}
     `;

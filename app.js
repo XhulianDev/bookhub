@@ -245,6 +245,12 @@ const attachBookClickListener = () => {
         appState.selectedBookId = +bookId;
 
         const selectedBook = findBookById(bookId);
+
+        const genre = selectedBook.genre;
+
+        appState.selectedGenre = genre;
+
+        renderFilterButtons();
         
         if (selectedBook) {
         	appState.view = 'details';

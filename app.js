@@ -262,6 +262,11 @@ const attachBookClickListener = () => {
 const hideBookDetails = () => {
 	catalogSection.classList.remove('hidden');
 	detailsSection.classList.add('hidden');
+
+	appState.selectedGenre = 'All';
+
+	renderFilterButtons();
+	updateDisplay();
 };
 
 const startQuiz = () => {

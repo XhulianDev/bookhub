@@ -193,7 +193,7 @@ const attachFilterListeners = () => {
 
         searchInput.value = "";
 
-        updateDisplay();
+        switchToGenre();
     });
 };
 
@@ -259,12 +259,20 @@ const attachBookClickListener = () => {
     });
 };
 
-const hideBookDetails = () => {
+const showCatalog = () => {
 	catalogSection.classList.remove('hidden');
 	detailsSection.classList.add('hidden');
+};
 
+const switchToGenre = () => {
+	showCatalog();
+	renderFilterButtons();
+	updateDisplay();
+};
+
+const hideBookDetails = () => {
 	appState.selectedGenre = 'All';
-
+	showCatalog();
 	renderFilterButtons();
 	updateDisplay();
 };

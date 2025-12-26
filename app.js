@@ -221,17 +221,11 @@ const renderBookDetails = (book) => {
         <button id="back-button">Back</button>
         <h2>${book.title}</h2>
         <p>Author: ${book.author}</p>
-        <p>Genre: ${book.genre}</p>
+        <p>Genre: ${book.genre.join(', ')}</p>
         <img src="assets/book-${book.id}.webp" alt="${book.title}">
         <p>${book.description}</p>
         ${quizButtonHTML}
     `;
-
-    document.getElementById('back-button').addEventListener('click', hideBookDetails);
-
-    if (book.quiz.length > 0) {
-    	document.getElementById('start-quiz-button').addEventListener('click', startQuiz);
-    };
 };
 
 const attachBookClickListener = () => {
@@ -251,9 +245,6 @@ const attachBookClickListener = () => {
         const firstGenre = genres[0];
 
         appState.selectedGenre = firstGenre || 'All';
-
-        console.log("Zhanret e librit: ", genres);
-        console.log("Zhanri i zgjedhur: ", firstGenre);
 
         renderFilterButtons();
         
@@ -313,10 +304,21 @@ const renderQuiz = (bookId) => {
 	});
 };
 
+const attachNavigationListeners = () => {
+	detailsSection.addEventListener("click", (event) => {
+		if (event.target.id === 'back-button') {
+			hideBookDetails();
+		} else if (event.target.id === 'start-quiz-button') {
+			startQuiz();
+		}
+	});
+};
+
 document.addEventListener('DOMContentLoaded', () => {
 	renderFilterButtons();
 	attachFilterListeners();
 	attachSearchListener();
 	attachBookClickListener();
+	attachNavigationListeners();
 	updateDisplay();
 });

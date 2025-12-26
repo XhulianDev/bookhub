@@ -13,7 +13,7 @@ export const updateDisplay = () => {
 		);
 
 		const isGenreMatch = selectedGenre === 'All' || (
-			book.genre.toLowerCase() === selectedGenre.toLowerCase()
+			book.genre.includes(selectedGenre)
 		);
 	
 		return isSearchMatch && isGenreMatch;

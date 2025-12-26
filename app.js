@@ -6,7 +6,7 @@ export const bookCatalog = [
 		id: 1,
 		title: "Crime and Punishment",
 		author: "Fyodor Dostoevsky",
-		genre: "Novel / Psychological Fiction",
+		genre: ["Novel", "Psychological Fiction"],
 		publicationYear: 1866,
 		shortDescription: "A desperate student commits murder, then grapples with intense moral and psychological turmoil.",
 		description: "The novel explores themes of redemption, guilt, and the social philosophy that justifies evil deeds. It is considered a foundational work of existentialist literature.",
@@ -22,7 +22,7 @@ export const bookCatalog = [
 		id: 2,
 		title: "Anna Karenina",
 		author: "Leo Tolstoy",
-		genre: "Novel / Realism",
+		genre: ["Novel", "Realism"],
 		publicationYear: 1877,
 		shortDescription: "The tragic romance between an aristocratic woman and a cavalry officer, set against Russian high society.",
 		description: "Tolstoy examines adultery, jealousy, faith, and the social hypocrisy of 19th-century Russia. Often cited as one of the greatest works of realist fiction.",
@@ -38,7 +38,7 @@ export const bookCatalog = [
 		id: 3,
 		title: "The Sorrows of Young Werther",
 		author: "Johann Wolfgang von Goethe",
-		genre: "Epistolary Novel / Romanticism",
+		genre: ["Epistolary Novel", "Romanticism"],
 		publicationYear: 1774,
 		shortDescription: "A passionate young man's unrequited love for an engaged woman leads to self-destruction.",
 		description: "A key work of the Sturm und Drang movement that profoundly influenced European Romanticism, told entirely through letters",
@@ -54,7 +54,7 @@ export const bookCatalog = [
 		id: 4,
 		title: "The Metamorphosis",
 		author: "Franz Kafka",
-		genre: "Novella / Absurdism",
+		genre: ["Novella", "Absurdism"],
 		publicationYear: 1915,
 		shortDescription: "A traveling salesman wakes up one morning to find himself inexplicably transformed into a massive insect",
 		description: "An exploration of alienation, anxiety, and the absurdity of modern life, focusing on themes of isolation and the breakdown of communication.",
@@ -70,7 +70,7 @@ export const bookCatalog = [
 	    id: 5,
 	    title: "Notes from Underground",
 	    author: "Fyodor Dostoevsky",
-	    genre: "Novel / Psychological Fiction",
+	    genre: ["Novel", "Psychological Fiction"],
 	    shortDescription: "A bitter and profound exploration of the human psyche from the perspective of a social recluse.",
 	    description: "An unnamed narrator retreats from society, offering a bitter and profound exploration of the human psyche.",
 	    quiz: [
@@ -85,7 +85,7 @@ export const bookCatalog = [
 	    id: 6,
 	    title: "Madame Bovary",
 	    author: "Gustave Flaubert",
-	    genre: "Novel / Realism",
+	    genre: ["Novel", "Realism"],
 	    shortDescription: "A tragic tale of a woman's struggle against the banality of provincial life.",
 	    description: "The tragic story of Emma Bovary, who seeks escape from her mundane life through romantic fantasies and excess.",
 	    quiz: [
@@ -100,7 +100,7 @@ export const bookCatalog = [
 	    id: 7,
 	    title: "Frankenstein",
 	    author: "Mary Shelley",
-	    genre: "Epistolary Novel / Romanticism",
+	    genre: ["Epistolary", "Romanticism"],
 	    shortDescription: "A scientist's ambitious experiment leads to the creation of a monstrous being.",
 	    description: "A scientist creates a sentient creature in an unorthodox scientific experiment, leading to tragic consequences.",
 	    quiz: [
@@ -115,7 +115,7 @@ export const bookCatalog = [
 	    id: 8,
 	    title: "The Stranger",
 	    author: "Albert Camus",
-	    genre: "Novella / Absurdism",
+	    genre: ["Novella", "Absurdism"],
 	    shortDescription: "An exploration of existential meaninglessness through the eyes of a detached narrator.",
 	    description: "Through the story of Meursault, Camus explores the absurdity of life and the indifference of the universe.",
 	    quiz: [
@@ -155,7 +155,7 @@ export const renderBookCatalog = (bookToRender = bookCatalog) => {
 };
 
 const renderFilterButtons = () => {
-	const allGenres = bookCatalog.map((book) => {
+	const allGenres = bookCatalog.flatMap((book) => {
 		return book.genre;
 	});
 
@@ -246,9 +246,14 @@ const attachBookClickListener = () => {
 
         const selectedBook = findBookById(bookId);
 
-        const genre = selectedBook.genre;
+        const genres = selectedBook.genre;
 
-        appState.selectedGenre = genre;
+        const firstGenre = genres[0];
+
+        appState.selectedGenre = firstGenre || 'All';
+
+        console.log("Zhanret e librit: ", genres);
+        console.log("Zhanri i zgjedhur: ", firstGenre);
 
         renderFilterButtons();
         

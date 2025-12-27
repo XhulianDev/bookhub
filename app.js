@@ -133,6 +133,7 @@ const filterButtonsContainer = document.getElementById('filter-buttons');
 const catalogSection = document.getElementById('catalog-section');
 const detailsSection = document.getElementById('details-section');
 const searchInput = document.getElementById('search-input');
+const quizSection = document.getElementById('quiz-section');
 
 let currentQuestionIndex = 0;
 
@@ -284,7 +285,6 @@ const startQuiz = () => {
 
 const renderQuiz = (bookId) => {
 	const book = findBookById(bookId);
-	const quizSection = document.getElementById('quiz-section');
 
 	detailsSection.classList.add('hidden');
 	quizSection.classList.remove('hidden');
@@ -299,12 +299,6 @@ const renderQuiz = (bookId) => {
 		</div>
 		<button id="cancel-quiz">Cancel Quiz</button>
 	`;
-
-	document.getElementById('cancel-quiz').addEventListener('click', () => {
-		quizSection.classList.add('hidden');
-		detailsSection.classList.remove('hidden');
-		appState.view = 'details';
-	});
 };
 
 const attachNavigationListeners = () => {
@@ -313,6 +307,15 @@ const attachNavigationListeners = () => {
 			hideBookDetails();
 		} else if (event.target.id === 'start-quiz-button') {
 			startQuiz();
+		}
+	});
+
+	quizSection.addEventListener("click", (event) => {
+		if (event.target.id === 'cancel-quiz') {
+			quizSection.classList.add('hidden');
+			detailsSection.classList.remove('hidden');
+			appState.view = 'details';
+			currentQuestionIndex = 0;
 		}
 	});
 };

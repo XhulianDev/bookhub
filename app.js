@@ -134,6 +134,8 @@ const catalogSection = document.getElementById('catalog-section');
 const detailsSection = document.getElementById('details-section');
 const searchInput = document.getElementById('search-input');
 
+let currentQuestionIndex = 0;
+
 export const renderBookCatalog = (bookToRender = bookCatalog) => {
 	if (bookToRender.length === 0) {
 			bookListContainer.innerHTML = '<h3 class="no-results">Book not found</h3>';
@@ -274,6 +276,7 @@ const hideBookDetails = () => {
 };
 
 const startQuiz = () => {
+	currentQuestionIndex = 0;
 	const bookId = appState.selectedBookId;
 	appState.view = 'quiz';
 	renderQuiz(bookId);
@@ -289,8 +292,8 @@ const renderQuiz = (bookId) => {
 	quizSection.innerHTML = `
 		<h2>Quiz: ${book.title}</h2>
 		<div id="question-container">
-			<p>${book.quiz[0].question}</p>
-			${book.quiz[0].options.map(option => `
+			<p>${book.quiz[currentQuestionIndex].question}</p>
+			${book.quiz[currentQuestionIndex].options.map(option => `
 				<button class="quiz-option">${option}</button>
 			`).join('')}
 		</div>

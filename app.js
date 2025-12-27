@@ -356,6 +356,27 @@ const attachNavigationListeners = () => {
 			detailsSection.classList.remove('hidden');
 			appState.view = 'details';
 			currentQuestionIndex = 0;
+		} else if (event.target.classList.contains('quiz-option')) {
+			const book = bookCatalog.find(b => b.id === appState.selectedBookId);
+			const isCorrect = event.target.innerText === book.quiz[currentQuestionIndex].answer;
+
+			if (isCorrect) {
+				alert("Correct!");
+			} else {
+				alert("Wrong");
+			}
+
+			currentQuestionIndex++;
+
+			if (currentQuestionIndex < book.quiz.length) {
+				renderQuiz(appState.selectedBookId);
+			} else {
+				alert("Quiz completed!");
+				quizSection.classList.add('hidden');
+				detailsSection.classList.remove('hidden');
+				appState.view = 'details';
+				currentQuestionIndex = 0;
+			}
 		}
 	});
 };

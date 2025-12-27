@@ -15,6 +15,11 @@ export const bookCatalog = [
 				question: "What is the name of the protagonist who commits the murder?",
 				options: ["Dmitri Karamazov", "Raskolnikov", "Prince Mishkin", "Levin"],
 				answer: "Raskolnikov"
+			},
+			{
+				question: "What is the name of the pawnbroker Raskolnikov kills?",
+				options: ["Sonia", "Dunya", "Alyona Ivanovna", "Lizaveta"],
+				answer: "Alyona Ivanovna"
 			}
 		]
 	},
@@ -31,6 +36,11 @@ export const bookCatalog = [
 				question: "In which city does Anna Karenina's story primarily begin?",
 				options: ["Moscow", "St. Petersburg", "Paris", "Orygol"],
 				answer: "Moscow"
+			},
+			{
+				question: "Who is the officer Anna falls in love with?",
+				options: ["Alexei Karenin", "Count Vronsky", "Konstantin Levin", "Stiva"],
+				answer: "Count Vronsky"
 			}
 		]
 	},
@@ -47,6 +57,11 @@ export const bookCatalog = [
 		        question: "What form of writing is used to tell Werther's story?",
 		        options: ["Poetry", "Diary entries", "Letters (Epistolary)", "Third-person narration"],
 		        answer: "Letters (Epistolary)"
+		    },
+		    {
+		    	question: "What is the name of the woman Werther is obsessed with?",
+		    	options: ["Lotte", "Sophie", "Clara", "Elena"],
+		    	answer: "Lotte"
 		    }
 		]
 	},
@@ -63,6 +78,11 @@ export const bookCatalog = [
 		        question: "What is Gregor Samsa's profession before his transformation?",
 		        options: ["Traveling salesman", "Bank clerk", "Doctor", "Teacher"],
 		        answer: "Traveling salesman"
+		    },
+		    {
+		    	question: "What is Gregor's sister's name?",
+		    	options: ["Grete", "Anna", "Maria", "Martha"],
+		    	answer: "Grete"
 		    }
 		]
 	},
@@ -78,6 +98,11 @@ export const bookCatalog = [
 	            question: "How is the narrator of the book often referred to?",
 	            options: ["The Underground Man", "The Silent Witness", "The Rebel", "The Hermit"],
 	            answer: "The Underground Man"
+	        },
+	        {
+	        	question: "How many years has the Underground Man lived in his 'underground'?",
+	        	options: ["10 years", "20 years", "40 years", "5 years"],
+	        	answer: "20 years"
 	        }
 	    ]
 	},
@@ -93,6 +118,11 @@ export const bookCatalog = [
 	            question: "In which country is the story set?",
 	            options: ["Italy", "France", "England", "Germany"],
 	            answer: "France"
+	        },
+	        {
+	        	question: "What is Emma's husband's profession?",
+	        	options: ["Lawyer", "Pharmacist", "Doctor", "Merchant"],
+	        	answer: "Doctor"
 	        }
 	    ]
 	},
@@ -108,6 +138,11 @@ export const bookCatalog = [
 	            question: "Who is the narrator at the beginning of the novel?",
 	            options: ["Victor Frankenstein", "The Creature", "Robert Walton", "Elizabeth Lavenza"],
 	            answer: "Robert Walton"
+	        },
+	        {
+	        	question: "What is Victor Frankenstein's hometown?",
+	        	options: ["London", "Geneva", "Ingolstadt", "Paris"],
+	        	answer: "Geneva"
 	        }
 	    ]
 	},
@@ -123,6 +158,11 @@ export const bookCatalog = [
 	            question: "What is the famous opening line of the book about?",
 	            options: ["A wedding", "A murder", "His mother's death", "A lost job"],
 	            answer: "His mother's death"
+	        },
+	        {
+	        	question: "Where does Meursault kill the Arab man?",
+	        	options: ["In a cafe", "On a beach", "In an apartment", "In a prison"],
+	        	answer: "On a beach"
 	        }
 	    ]
 	}

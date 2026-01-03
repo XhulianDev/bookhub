@@ -3,4 +3,5 @@ export const appState = {
 	selectedGenre: 'All',
 	searchTerm: "",
 	selectedBookId: null,
+	currentQuizScore: 0,
 };

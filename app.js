@@ -179,19 +179,19 @@ let currentQuestionIndex = 0;
 
 export const renderBookCatalog = (bookToRender = bookCatalog) => {
 	if (bookToRender.length === 0) {
-			bookListContainer.innerHTML = '<h3 class="no-results">Book not found</h3>';
-			return;
-		}
+		bookListContainer.innerHTML = '<h3 class="no-results">Book not found</h3>';
+		return;
+	}
 		
-		const htmlOutput = bookToRender.map((book) => {
-			return `
-				<div class="book-card" data-id="${book.id}">
-					<img src="assets/book-${book.id}.webp" alt="${book.title}" loading="lazy">
-					<h3>${book.title}</h3>
-					<p>By: ${book.author}</p>
-					<p>${book.shortDescription}</p>
-				</div>
-			`;
+	const htmlOutput = bookToRender.map((book) => {
+		return `
+			<div class="book-card" data-id="${book.id}">
+				<img src="assets/book-${book.id}.webp" alt="${book.title}" loading="lazy">
+				<h3>${book.title}</h3>
+				<p>By: ${book.author}</p>
+				<p>${book.shortDescription}</p>
+			</div>
+		`;
 	}).join('');
 
 	bookListContainer.innerHTML = htmlOutput;
@@ -283,15 +283,12 @@ const attachBookClickListener = () => {
 
         const selectedBook = findBookById(bookId);
 
-        const genres = selectedBook.genre;
-
-        const firstGenre = genres[0];
-
-        appState.selectedGenre = firstGenre || 'All';
-
-        renderFilterButtons();
-        
         if (selectedBook) {
+        	const genres = selectedBook.genre;
+	        const firstGenre = genres[0];
+	        appState.selectedGenre = firstGenre || 'All';
+
+	        renderFilterButtons();
         	appState.view = 'details';
             renderBookDetails(selectedBook);
         };
@@ -362,6 +359,7 @@ const attachNavigationListeners = () => {
 
 			if (isCorrect) {
 				alert("Correct!");
+				appState.currentQuizScore++;
 			} else {
 				alert("Wrong");
 			}
@@ -372,13 +370,38 @@ const attachNavigationListeners = () => {
 				renderQuiz(appState.selectedBookId);
 			} else {
 				alert("Quiz completed!");
+				saveHighScore();
 				quizSection.classList.add('hidden');
 				detailsSection.classList.remove('hidden');
 				appState.view = 'details';
 				currentQuestionIndex = 0;
+				appState.currentQuizScore = 0;
 			}
 		}
 	});
+};
+
+const saveHighScore = () => {
+	const book = appState.selectedBookId;
+	const score = appState.currentQuizScore;
+
+	const bookName = findBookById(book).title;
+
+	const result = {
+		title: bookName,
+		score: score,
+	};
+
+	appState.quizHistory.push(result);
+
+	localStorage.setItem('quizHistory', JSON.stringify(appState.quizHistory));
+};
+
+const loadHistory = () => {
+	const savedData = localStorage.getItem('quizHistory');
+	if (savedData) {
+		appState.quizHistory = JSON.parse(savedData);
+	}
 };
 
 document.addEventListener('DOMContentLoaded', () => {

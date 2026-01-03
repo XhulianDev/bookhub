@@ -4,4 +4,5 @@ export const appState = {
 	searchTerm: "",
 	selectedBookId: null,
 	currentQuizScore: 0,
+	quizHistory: [],
 };

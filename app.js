@@ -404,11 +404,33 @@ const loadHistory = () => {
 	}
 };
 
+const setupModalEvents = () => {
+	const modal = document.getElementById('history-modal');
+	const openBtn = document.getElementById('open-modal-btn');
+	const closeBtn = document.getElementById('close-modal-btn');
+
+	openBtn.addEventListener('click', () => {
+		modal.classList.remove('hidden');
+	});
+
+	closeBtn.addEventListener('click', () => {
+		modal.classList.add('hidden');
+	});
+
+	modal.addEventListener('click', (event) => {
+		if (event.target === modal) {
+			modal.classList.add('hidden');
+		}
+	});
+
+};
+
 document.addEventListener('DOMContentLoaded', () => {
 	renderFilterButtons();
 	attachFilterListeners();
 	attachSearchListener();
 	attachBookClickListener();
 	attachNavigationListeners();
+	setupModalEvents();
 	updateDisplay();
 });

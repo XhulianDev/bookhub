@@ -74,7 +74,16 @@ body {
 
 .close-btn {
 	position: absolute;
-	top: 2px;
-	right: 2px;
+	top: 0.565rem;
+	right: 0.565rem;
+	font-size: 1.45rem;
+	font-weight: bold;
+	color: #222;
+	transition: 0.3s;
 	cursor: pointer;
+	line-height: 1;
+}
+
+.close-btn:hover{
+	color: #444;
 }

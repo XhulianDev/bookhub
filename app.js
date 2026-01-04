@@ -384,12 +384,14 @@ const attachNavigationListeners = () => {
 const saveHighScore = () => {
 	const book = appState.selectedBookId;
 	const score = appState.currentQuizScore;
+	const currentDate = new Date().toLocaleString();
 
 	const bookName = findBookById(book).title;
 
 	const result = {
 		title: bookName,
 		score: score,
+		date: currentDate,
 	};
 
 	appState.quizHistory.push(result);
@@ -411,6 +413,7 @@ const setupModalEvents = () => {
 
 	openBtn.addEventListener('click', () => {
 		modal.classList.remove('hidden');
+		renderHistory();
 	});
 
 	closeBtn.addEventListener('click', () => {
@@ -422,15 +425,42 @@ const setupModalEvents = () => {
 			modal.classList.add('hidden');
 		}
 	});
+};
 
+const renderHistory = () => {
+	const dataContainer = document.getElementById('history-data-container');
+	dataContainer.innerHTML = "";
+
+	const reversedHistory = [...appState.quizHistory].reverse();
+
+	if (reversedHistory.length === 0) {
+		dataContainer.innerHTML = `<p>No History</p>`;
+	} else {
+		reversedHistory.forEach(item => {
+			const historyItem = `<div>${item.title}: ${item.score}% (${item.date})</div>`;
+			dataContainer.innerHTML += historyItem;
+		});
+	};
+};
+
+const clearQuizHistory = () => {
+	const clearBtn = document.getElementById('clear-history-btn');
+
+	clearBtn.addEventListener('click', () => {
+		appState.quizHistory = [];
+		localStorage.removeItem('quizHistory');
+		renderHistory();
+	});
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+	loadHistory();
 	renderFilterButtons();
 	attachFilterListeners();
 	attachSearchListener();
 	attachBookClickListener();
 	attachNavigationListeners();
 	setupModalEvents();
+	clearQuizHistory();
 	updateDisplay();
 });

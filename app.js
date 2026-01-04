@@ -384,7 +384,14 @@ const attachNavigationListeners = () => {
 const saveHighScore = () => {
 	const book = appState.selectedBookId;
 	const score = appState.currentQuizScore;
-	const currentDate = new Date().toLocaleString();
+	const currentDate = new Date().toLocaleString(undefined, {
+		day: '2-digit',
+		month: '2-digit',
+		year: '2-digit',
+		hour: '2-digit',
+		minute: '2-digit',
+		hour12: false
+	});
 
 	const bookName = findBookById(book).title;
 
@@ -434,10 +441,18 @@ const renderHistory = () => {
 	const reversedHistory = [...appState.quizHistory].reverse();
 
 	if (reversedHistory.length === 0) {
-		dataContainer.innerHTML = `<p>No History</p>`;
+		dataContainer.innerHTML = `<li>No quiz attempts found</li>`;
 	} else {
 		reversedHistory.forEach(item => {
-			const historyItem = `<div>${item.title}: ${item.score}% (${item.date})</div>`;
+			const historyItem = `
+				<li class="history-item">
+					<article class="history-card">
+						<strong class="history-book">${item.title}</strong>
+						<time class="history-date">${item.date}</time>
+						<span class="history-score">${item.score}%</span>
+					</article>
+				</li>
+			`;
 			dataContainer.innerHTML += historyItem;
 		});
 	};

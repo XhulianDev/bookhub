@@ -444,12 +444,17 @@ const renderHistory = () => {
 		dataContainer.innerHTML = `<li>No quiz attempts found</li>`;
 	} else {
 		reversedHistory.forEach(item => {
+			let scoreClass = item.score >= 1 ? 'pass' : 'fail';
+
 			const historyItem = `
 				<li class="history-item">
-					<article class="history-card">
-						<strong class="history-book">${item.title}</strong>
-						<time class="history-date">${item.date}</time>
-						<span class="history-score">${item.score}%</span>
+					<article class="history-card ${scoreClass}">
+						<span class="status-dot"></span>
+						<div class="card-content">
+							<strong class="history-book">${item.title}</strong>
+							<time class="history-date">${item.date}</time>
+							<span class="history-score">${item.score}%</span>
+						</div>
 					</article>
 				</li>
 			`;

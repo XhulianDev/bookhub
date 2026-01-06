@@ -370,7 +370,7 @@ const attachNavigationListeners = () => {
 				renderQuiz(appState.selectedBookId);
 			} else {
 				alert("Quiz completed!");
-				saveHighScore();
+				saveHighScore(book.quiz.length);
 				quizSection.classList.add('hidden');
 				detailsSection.classList.remove('hidden');
 				appState.view = 'details';
@@ -381,7 +381,7 @@ const attachNavigationListeners = () => {
 	});
 };
 
-const saveHighScore = () => {
+const saveHighScore = (totalQuestions) => {
 	const book = appState.selectedBookId;
 	const score = appState.currentQuizScore;
 	const currentDate = new Date().toLocaleString(undefined, {
@@ -397,7 +397,8 @@ const saveHighScore = () => {
 
 	const result = {
 		title: bookName,
-		score: score,
+		correct: score,
+		total: totalQuestions,
 		date: currentDate,
 	};
 
@@ -444,7 +445,8 @@ const renderHistory = () => {
 		dataContainer.innerHTML = `<li>No quiz attempts found</li>`;
 	} else {
 		reversedHistory.forEach(item => {
-			let scoreClass = item.score >= 1 ? 'pass' : 'fail';
+			const percentage = item.total > 0 ? (item.correct / item.total) * 100 : 0;
+			let scoreClass = percentage >= 50 ? 'pass' : 'fail';
 
 			const historyItem = `
 				<li class="history-item">
@@ -453,7 +455,7 @@ const renderHistory = () => {
 						<div class="card-content">
 							<strong class="history-book">${item.title}</strong>
 							<time class="history-date">${item.date}</time>
-							<span class="history-score">${item.score}%</span>
+							<span class="history-score">${item.correct}/${item.total}</span>
 						</div>
 					</article>
 				</li>

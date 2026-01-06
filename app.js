@@ -467,6 +467,9 @@ const clearQuizHistory = () => {
 	const clearBtn = document.getElementById('clear-history-btn');
 
 	clearBtn.addEventListener('click', () => {
+		const isConfirmed = window.confirm("Are you sure?");
+		if (!isConfirmed) return;
+
 		appState.quizHistory = [];
 		localStorage.removeItem('quizHistory');
 		renderHistory();

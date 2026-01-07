@@ -396,6 +396,7 @@ const saveHighScore = (totalQuestions) => {
 	const bookName = findBookById(book).title;
 
 	const result = {
+		id: Date.now(),
 		title: bookName,
 		correct: score,
 		total: totalQuestions,
@@ -437,32 +438,51 @@ const setupModalEvents = () => {
 
 const renderHistory = () => {
 	const dataContainer = document.getElementById('history-data-container');
+	if (!dataContainer) return;
 	dataContainer.innerHTML = "";
 
 	const reversedHistory = [...appState.quizHistory].reverse();
 
 	if (reversedHistory.length === 0) {
 		dataContainer.innerHTML = `<li>No quiz attempts found</li>`;
-	} else {
-		reversedHistory.forEach(item => {
-			const percentage = item.total > 0 ? (item.correct / item.total) * 100 : 0;
-			let scoreClass = percentage >= 50 ? 'pass' : 'fail';
+		return;
+	}
+	
+	reversedHistory.forEach(item => {
+		const percentage = item.total > 0 ? (item.correct / item.total) * 100 : 0;
+		let scoreClass = percentage >= 50 ? 'pass' : 'fail';
 
-			const historyItem = `
-				<li class="history-item">
-					<article class="history-card ${scoreClass}">
-						<span class="status-dot"></span>
-						<div class="card-content">
-							<strong class="history-book">${item.title}</strong>
-							<time class="history-date">${item.date}</time>
-							<span class="history-score">${item.correct}/${item.total}</span>
-						</div>
-					</article>
-				</li>
-			`;
-			dataContainer.innerHTML += historyItem;
-		});
-	};
+		const historyItem = `
+			<li class="history-item">
+				<article class="history-card ${scoreClass}">
+					<span class="status-dot"></span>
+					<div class="card-content">
+						<strong class="history-book">${item.title}</strong>
+						<time class="history-date">${item.date}</time>
+						<span class="history-score">${item.correct}/${item.total}</span>
+					</div>
+				<button class="rmv-button" data-id="${item.id}">Remove</button>
+				</article>
+			</li>
+		`;
+		dataContainer.innerHTML += historyItem;
+	});
+};
+
+const handleDeleteHistoryItem = (event) => {
+	if (event.target.classList.contains('rmv-button')) {
+		const clickedId = event.target.dataset.id;
+		appState.quizHistory = appState.quizHistory.filter(item => item.id !== Number(clickedId));
+		localStorage.setItem('quiz-history', JSON.stringify(appState.quizHistory));
+		renderHistory();
+	}
+};
+
+const attachHistoryListeners = () => {
+	const dataContainer = document.getElementById('history-data-container');
+	if (dataContainer) {
+		dataContainer.addEventListener("click", handleDeleteHistoryItem);
+	}
 };
 
 const clearQuizHistory = () => {
@@ -487,5 +507,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	attachNavigationListeners();
 	setupModalEvents();
 	clearQuizHistory();
+	attachHistoryListeners();
 	updateDisplay();
 });

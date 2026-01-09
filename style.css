@@ -184,3 +184,30 @@ body {
 	border: 1px solid #f44336;
 	box-shadow: 0 0 4px #f44336;
 }
+
+.danger-btn {
+	display: block;
+	margin: 1.5rem auto 0.5rem auto;
+	padding: 0.625rem 1.5rem;
+	background-color: #f44336;
+	color: #fff;
+	border: none;
+	border-radius: 0.3125rem;
+	cursor: pointer;
+	font-weight: 600;
+	font-size: 0.8125rem;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.danger-btn:hover {
+	background-color: #d32f2f;
+	transform: translateY(-2px);
+	box-shadow: 0 6px 12px rgba(244, 67, 54, 0.3);
+}
+
+.danger-btn:active {
+	transform: translateY(0);
+}

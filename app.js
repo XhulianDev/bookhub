@@ -438,16 +438,20 @@ const setupModalEvents = () => {
 
 const renderHistory = () => {
 	const dataContainer = document.getElementById('history-data-container');
+	const clearBtn = document.getElementById('clear-history-btn');
 	if (!dataContainer) return;
-	dataContainer.innerHTML = "";
 
+	dataContainer.innerHTML = "";
 	const reversedHistory = [...appState.quizHistory].reverse();
 
 	if (reversedHistory.length === 0) {
 		dataContainer.innerHTML = `<li>No quiz attempts found</li>`;
+		if (clearBtn) clearBtn.style.display = "none";
 		return;
 	}
-	
+
+	if (clearBtn) clearBtn.style.display = "block";
+
 	reversedHistory.forEach(item => {
 		const percentage = item.total > 0 ? (item.correct / item.total) * 100 : 0;
 		let scoreClass = percentage >= 50 ? 'pass' : 'fail';

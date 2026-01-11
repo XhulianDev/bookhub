@@ -1,16 +1,37 @@
+* {
+	box-sizing: border-box;
+}
+
 body {
 	margin: 0;
 	padding: 0;
+	background-color: #f8f9fa;
 	font-family: 'Poppins', sans-serif;
+}
+
+header, main {
+	width: 90%;
+	max-width: 1200px;
+	margin: 0 auto;
 }
 
 .book-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(18.25rem, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(17.80rem, 1fr));
 	gap: 0.625rem;
 	padding: 0.625rem;
 	max-width: 75rem;
 	margin: 0 auto;
+}
+
+.book-card {
+	box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+	transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.book-card:hover {
+	box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+	transform: translateY(-5px);
 }
 
 .book-card img,

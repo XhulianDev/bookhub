@@ -15,8 +15,8 @@ header, main {
 
 .book-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(17.80rem, 1fr));
-	gap: 0.625rem;
+	grid-template-columns: repeat(auto-fill, minmax(17.5rem, 1fr));
+	gap: 1rem;
 	padding: 0.625rem;
 	margin: 0 auto;
 }
@@ -34,10 +34,11 @@ header, main {
 .book-card img,
 #book-details-container img {
 	width: 100%;
-	max-width: 18.25rem;
-	height: 25rem;
-	background-color: #f0f0f0;
+	max-width: 400px;
+	height: auto;
+	aspect-ratio: 2/3;
 	display: block;
+	border-radius: 4px;
 }
 
 .hidden {

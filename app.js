@@ -258,11 +258,11 @@ const renderBookDetails = (book) => {
 
 	const detailContainer = document.getElementById('book-details-container');
 
-	const quizButtonHTML = book.quiz.length > 0 ? '<button id="start-quiz-button">Start Quiz</button>' : '';
+	const quizButtonHTML = book.quiz.length > 0 ? '<button id="start-quiz-btn">Start Quiz</button>' : '';
 
     detailContainer.innerHTML = `
         <button id="back-button">Back</button>
-        <h2>${book.title}</h2>
+        <h3>${book.title}</h3>
         <p>Author: ${book.author}</p>
         <p>Genre: ${book.genre.join(', ')}</p>
         <img src="assets/book-${book.id}.webp" alt="${book.title}">

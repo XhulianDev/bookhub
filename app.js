@@ -185,12 +185,14 @@ export const renderBookCatalog = (bookToRender = bookCatalog) => {
 		
 	const htmlOutput = bookToRender.map((book) => {
 		return `
-			<div class="book-card" data-id="${book.id}">
-				<img src="assets/book-${book.id}.webp" alt="${book.title}" loading="lazy">
-				<h3>${book.title}</h3>
-				<p>By: ${book.author}</p>
-				<p>${book.shortDescription}</p>
-			</div>
+		    <div class="book-card" data-id="${book.id}">
+		        <img src="assets/book-${book.id}.webp" alt="${book.title}" loading="lazy">
+		        <div class="book-info">
+		            <h3>${book.title}</h3>
+		            <p class="author">By: ${book.author}</p>
+		            <p class="description">${book.shortDescription}</p>
+		        </div>
+		    </div>
 		`;
 	}).join('');
 

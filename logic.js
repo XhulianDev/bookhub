@@ -1,5 +1,6 @@
 import { appState } from './state.js';
-import { bookCatalog, renderBookCatalog } from './app.js';
+import { bookCatalog } from './data.js'
+import { renderBookCatalog } from './app.js';
 
 export const updateDisplay = () => {
 	const selectedGenre = appState.selectedGenre;

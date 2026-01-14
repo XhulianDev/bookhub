@@ -263,13 +263,29 @@ const renderBookDetails = (book) => {
 	const quizButtonHTML = book.quiz.length > 0 ? '<button id="start-quiz-btn">Start Quiz</button>' : '';
 
     detailContainer.innerHTML = `
-        <button id="back-button">Back</button>
-        <h3>${book.title}</h3>
-        <p>Author: ${book.author}</p>
-        <p>Genre: ${book.genre.join(', ')}</p>
-        <img src="assets/book-${book.id}.webp" alt="${book.title}">
-        <p>${book.description}</p>
-        ${quizButtonHTML}
+        <button id="back-button">Back to Catalog</button>
+        <div class="details-wrapper">
+        	<div class="details-sidebar">
+    			<img src="assets/book-${book.id}.webp" alt="${book.title}">
+    			<div class="meta-info">
+			        <h3>${book.title}</h3>
+    				<div class="meta-item">
+    					<span class="label">Author</span>
+    					<span class="value">${book.author}</span>
+    				</div>
+    				<div class="meta-item">
+    					<span class="label">Genre</span>
+    					<span class="value">${book.genre.join(', ')}</span>
+    				</div>
+			        ${quizButtonHTML}
+        		</div>
+    		</div>
+
+    		<div class="details-content">
+    			<h4>Summary</h4>
+		        <p>${book.description}</p>
+    		</div>
+    	</div>
     `;
 };
 
@@ -344,7 +360,7 @@ const attachNavigationListeners = () => {
 	detailsSection.addEventListener("click", (event) => {
 		if (event.target.id === 'back-button') {
 			hideBookDetails();
-		} else if (event.target.id === 'start-quiz-button') {
+		} else if (event.target.id === 'start-quiz-btn') {
 			startQuiz();
 		}
 	});

@@ -346,24 +346,69 @@ main h2 {
     padding-left: 12px;
 }
 
-#book-details-container h3 {
+.details-wrapper {
+	display: flex;
+	align-items: flex-start;
+	gap: 3rem;
+	margin: 1.5rem 0 0.875rem;
+}
+
+.details-sidebar {
+	flex: 1;
+	max-width: 20rem;
+}
+
+.details-content {
+	flex: 3;
+	line-height: 1.6;
+	color: #2d3436;
+}
+
+.details-sidebar img {
+	width: 100%;
+	border-radius: 12px;
+	box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.details-content h4 {
+	border-bottom: 2px solid #007bff;
+	display: inline-block;
+	margin-bottom: 1rem;
+	padding-bottom: 5px;
+}
+
+.meta-info h3 {
     font-size: 1.35rem;
     font-weight: 700;
     color: #1a1a1a;
-    margin: 1rem 0;
-    line-height: 1.2;
+    margin: 1rem 0 0.5rem;
 }
 
-#book-details-container p {
+.details-content p {
     color: #1a212b;
-    line-height: 1.6;
-    margin-bottom: 1rem;
+    line-height: 1.8;
     font-size: 1rem;
 }
 
-#book-details-container p strong {
-    color: #111827;
-    font-weight: 600;
+.meta-item {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1.25rem;
+}
+
+.label {
+	font-size: 0.8125rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05rem;
+	color: #6b7280;
+	font-weight: 600;
+}
+
+.value {
+	font-size: 1.1rem;
+	color: #111827;
+	font-weight: 500;
+	margin-top: 0.2rem;
 }
 
 #back-button {
@@ -375,7 +420,7 @@ main h2 {
     cursor: pointer;
     font-size: 0.9rem;
     transition: all 0.2s;
-    margin-bottom: 1rem;
+    margin: 0.8rem 0;
 }
 
 #back-button:hover {
@@ -395,7 +440,6 @@ main h2 {
     transition: background 0.2s, transform 0.1s;
     width: auto;
     min-width: 120px;
-    margin: 0 0 0.875rem;
 }
 
 #start-quiz-btn:hover {

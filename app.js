@@ -316,6 +316,7 @@ const attachBookClickListener = () => {
 const showCatalog = () => {
 	catalogSection.classList.remove('hidden');
 	detailsSection.classList.add('hidden');
+	quizSection.classList.add('hidden');
 };
 
 const switchToGenre = () => {

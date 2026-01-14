@@ -500,6 +500,20 @@ main h2 {
 	transform: translateX(5px);
 }
 
+.quiz-option.correct {
+	background-color: #4caf50 !important;
+	color: #fff;
+	border-color: #45a049;
+	box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+}
+
+.quiz-option.wrong {
+	background-color: #f44336 !important;
+	color: #fff;
+	border-color: #da190b;
+	box-shadow: 0 4px 10px rgba(244, 67, 54, 0.3);
+}
+
 #cancel-quiz {
 	margin-top: 2rem;
 	background: none;

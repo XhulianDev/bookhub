@@ -179,6 +179,8 @@ const renderQuiz = (bookId) => {
 	detailsSection.classList.add('hidden');
 	quizSection.classList.remove('hidden');
 
+	quizSection.style.pointerEvents = 'auto';
+
 	quizSection.innerHTML = `
 		<div class="quiz-container">
 			<div class="quiz-header">
@@ -217,29 +219,35 @@ const attachNavigationListeners = () => {
 			appState.view = 'details';
 			currentQuestionIndex = 0;
 		} else if (event.target.classList.contains('quiz-option')) {
+			const clickedOption = event.target;
 			const book = bookCatalog.find(b => b.id === appState.selectedBookId);
 			const isCorrect = event.target.innerText === book.quiz[currentQuestionIndex].answer;
 
+			quizSection.style.pointerEvents = 'none';
+
 			if (isCorrect) {
-				alert("Correct!");
+				clickedOption.classList.add('correct');
 				appState.currentQuizScore++;
 			} else {
-				alert("Wrong");
+				clickedOption.classList.add('wrong');
 			}
 
-			currentQuestionIndex++;
+			setTimeout(() => {
+				currentQuestionIndex++
 
-			if (currentQuestionIndex < book.quiz.length) {
-				renderQuiz(appState.selectedBookId);
-			} else {
-				alert("Quiz completed!");
-				saveHighScore(book.quiz.length);
-				quizSection.classList.add('hidden');
-				detailsSection.classList.remove('hidden');
-				appState.view = 'details';
-				currentQuestionIndex = 0;
-				appState.currentQuizScore = 0;
-			}
+				if (currentQuestionIndex < book.quiz.length) {
+					renderQuiz(appState.selectedBookId);
+				} else {
+					alert("Quiz completed!");
+					saveHighScore(book.quiz.length);
+					quizSection.style.pointerEvents = 'auto';
+					quizSection.classList.add('hidden');
+					detailsSection.classList.remove('hidden');
+					appState.view = 'details';
+					currentQuestionIndex = 0;
+					appState.currentQuizScore = 0;
+				}
+			}, 1000);
 		}
 	});
 };

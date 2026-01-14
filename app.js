@@ -180,14 +180,24 @@ const renderQuiz = (bookId) => {
 	quizSection.classList.remove('hidden');
 
 	quizSection.innerHTML = `
-		<h2>Quiz: ${book.title}</h2>
-		<div id="question-container">
-			<p>${book.quiz[currentQuestionIndex].question}</p>
-			${book.quiz[currentQuestionIndex].options.map(option => `
-				<button class="quiz-option">${option}</button>
-			`).join('')}
+		<div class="quiz-container">
+			<div class="quiz-header">
+				<h3>Quiz: ${book.title}</h3>
+				<span class="question-count">Question ${currentQuestionIndex + 1} of ${book.quiz.length}</span>
+			</div>
+
+		<div id="question-card">
+			<p class="question-text">${book.quiz[currentQuestionIndex].question}</p>
+			<div class="options-grid">
+				${book.quiz[currentQuestionIndex].options.map(option => `
+					<button class="quiz-option">${option}</button>
+				`).join('')}
+			</div>
 		</div>
-		<button id="cancel-quiz">Cancel Quiz</button>
+
+		<div class="quiz-footer">
+			<button id="cancel-quiz">Cancel Quiz</button>
+		</div>
 	`;
 };
 

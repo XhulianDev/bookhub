@@ -168,6 +168,7 @@ const hideBookDetails = () => {
 
 const startQuiz = () => {
 	currentQuestionIndex = 0;
+	appState.currentQuizScore = 0;
 	const bookId = appState.selectedBookId;
 	appState.view = 'quiz';
 	renderQuiz(bookId);
@@ -263,8 +264,6 @@ const showQuizResults = () => {
 		quizSection.classList.add('hidden');
 		detailsSection.classList.remove('hidden');
 		appState.view = 'details';
-		currentQuestionIndex = 0;
-		appState.currentQuizScore = 0;
 	});
 };
 

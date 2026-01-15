@@ -238,23 +238,39 @@ const attachNavigationListeners = () => {
 				if (currentQuestionIndex < book.quiz.length) {
 					renderQuiz(appState.selectedBookId);
 				} else {
-					alert("Quiz completed!");
-					saveHighScore(book.quiz.length);
+					showQuizResults();
+					saveHighScore(appState.currentQuizScore, book.quiz.length);
 					quizSection.style.pointerEvents = 'auto';
-					quizSection.classList.add('hidden');
-					detailsSection.classList.remove('hidden');
-					appState.view = 'details';
-					currentQuestionIndex = 0;
-					appState.currentQuizScore = 0;
 				}
 			}, 1000);
 		}
 	});
 };
 
-const saveHighScore = (totalQuestions) => {
+const showQuizResults = () => {
+	const id = appState.selectedBookId;
+	const book = findBookById(id);
+
+	quizSection.innerHTML = `
+		<h3>Quiz Completed!</h3>
+		<p>Score:${appState.currentQuizScore}/${book.quiz.length}</p>
+		<button id="finish-quiz-btn">Back to Book</button>
+	`
+
+	const closeBtn = document.getElementById('finish-quiz-btn');
+
+	closeBtn.addEventListener("click", () => {
+		quizSection.classList.add('hidden');
+		detailsSection.classList.remove('hidden');
+		appState.view = 'details';
+		currentQuestionIndex = 0;
+		appState.currentQuizScore = 0;
+	});
+};
+
+const saveHighScore = (score, total) => {
 	const book = appState.selectedBookId;
-	const score = appState.currentQuizScore;
+
 	const currentDate = new Date().toLocaleString(undefined, {
 		day: '2-digit',
 		month: '2-digit',
@@ -270,7 +286,7 @@ const saveHighScore = (totalQuestions) => {
 		id: Date.now(),
 		title: bookName,
 		correct: score,
-		total: totalQuestions,
+		total: total,
 		date: currentDate,
 	};
 
@@ -348,7 +364,7 @@ const handleDeleteHistoryItem = (event) => {
 	if (event.target.classList.contains('rmv-button')) {
 		const clickedId = event.target.dataset.id;
 		appState.quizHistory = appState.quizHistory.filter(item => item.id !== Number(clickedId));
-		localStorage.setItem('quiz-history', JSON.stringify(appState.quizHistory));
+		localStorage.setItem('quizHistory', JSON.stringify(appState.quizHistory));
 		renderHistory();
 	}
 };

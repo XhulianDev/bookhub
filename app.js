@@ -253,10 +253,16 @@ const showQuizResults = () => {
 	const book = findBookById(id);
 
 	quizSection.innerHTML = `
-		<h3>Quiz Completed!</h3>
-		<p>Score:${appState.currentQuizScore}/${book.quiz.length}</p>
-		<button id="finish-quiz-btn">Back to Book</button>
-	`
+		<div class="quiz-results-card">
+			<h3>Quiz Completed!</h3>
+			<div class="score-display">
+				<span class="score-number">${appState.currentQuizScore}</span>
+				<span class="score-total">/ ${book.quiz.length}</span>
+			</div>
+			<p class="results-message">${appState.currentQuizScore === book.quiz.length ? "Perfect Score! You're a Master" : "Well done! Keep reading!"}</p>
+			<button id="finish-quiz-btn" class="primary-btn">Back to Book</button>
+		</div>
+	`;
 
 	const closeBtn = document.getElementById('finish-quiz-btn');
 

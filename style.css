@@ -171,6 +171,12 @@ header h1 #hero-accent {
 	color: #444;
 }
 
+.modal-content h2 {
+	color: #222;
+	font-size: 1.4rem;
+	margin: 1rem 0.5rem;
+}
+
 #history-data-container {
 	list-style: none;
 	padding: 0;
@@ -180,6 +186,24 @@ header h1 #hero-accent {
 	width: 100%;
 	gap: 0.5rem;
 	justify-content: center;
+}
+
+#history-data-container li:only-child {
+	grid-column: 1 / -1;
+	text-align: center;
+	padding: 3rem 1rem;
+	color: #111;
+	font-size: 1.1rem;
+	font-style: italic;
+	list-style: none;
+}
+
+#history-data-container li:only-child::before {
+	content: '\1F4DA';
+	display: block;
+	font-size: 2rem;
+	margin-bottom: 1rem;
+	opacity: 0.9;
 }
 
 .history-item {

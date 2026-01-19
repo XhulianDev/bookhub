@@ -9,7 +9,7 @@ body {
 
 header, main {
 	width: 95%;
-	max-width: 1200px;
+	max-width: 75rem;
 	margin: 0 auto;
 }
 
@@ -32,8 +32,8 @@ header h1 {
 header h1::after {
 	content: '';
 	display: block;
-	width: 60px;
-	height: 4px;
+	width: 3.75rem;
+	height: 0.25rem;
 	background-color: #007bff;
 	margin-top: 0.5rem;
 	border-radius: 2px;
@@ -73,13 +73,12 @@ header h1 #hero-accent {
 }
 
 .book-card img,
-#book-details-container img {
+.details-sidebar img {
 	width: 100%;
-	max-width: 400px;
+	max-width: 25rem;
 	height: auto;
 	aspect-ratio: 2/3;
-	display: block;
-	border-radius: 4px;
+	border-radius: 6px;
 }
 
 .book-info h3 {
@@ -251,8 +250,10 @@ header h1 #hero-accent {
 	font-size: 1rem;
 	font-weight: 700;
 	width: 100%;
-	min-width: 200px;
-	text-overflow: hidden;
+	min-width: 12.5rem;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 	margin-bottom: 0.125rem;
 	display: block;
 }
@@ -371,7 +372,7 @@ main h2 {
     font-weight: 600;
     margin: 2rem 0 1.25rem;
     border-left: 4px solid #007bff;
-    padding-left: 12px;
+    padding-left: 0.75rem;
 }
 
 .details-wrapper {
@@ -382,27 +383,28 @@ main h2 {
 }
 
 .details-sidebar {
-	flex: 1;
+	flex: 2;
 	max-width: 20rem;
 }
 
 .details-content {
 	flex: 3;
 	line-height: 1.6;
+	text-align: justify;
 	color: #2d3436;
 }
 
 .details-sidebar img {
 	width: 100%;
-	border-radius: 12px;
+	border-radius: 6px;
 	box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
 .details-content h4 {
 	border-bottom: 2px solid #007bff;
 	display: inline-block;
-	margin-bottom: 1rem;
-	padding-bottom: 5px;
+	margin: 0.2rem 0 0.8rem;
+	padding-bottom: 0.3125rem;
 }
 
 .meta-info h3 {
@@ -416,6 +418,7 @@ main h2 {
     color: #1a212b;
     line-height: 1.8;
     font-size: 1rem;
+    margin: 0.5rem 0;
 }
 
 .meta-item {
@@ -469,7 +472,7 @@ main h2 {
     cursor: pointer;
     transition: background 0.2s, transform 0.1s;
     width: auto;
-    min-width: 120px;
+    min-width: 7.5rem;
 }
 
 #start-quiz-btn:hover {
@@ -478,7 +481,7 @@ main h2 {
 }
 
 .quiz-container {
-	max-width: 600px;
+	max-width: 37.5rem;
 	margin: 2rem auto;
 	padding: 2rem;
 	background: #fff;
@@ -566,7 +569,7 @@ main h2 {
 	padding: 3rem;
 	border-radius: 10px;
 	text-align: center;
-	max-width: 400px;
+	max-width: 25rem;
 	margin: 2rem 0;
 	border: 1px solid #333;
 	box-shadow: 0 10px 30px rgba(0,0,0,0.5);
@@ -625,7 +628,7 @@ footer {
 
 .footer-container {
 	width: 95%;
-	max-width: 1200px;
+	max-width: 75rem;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -644,8 +647,8 @@ footer {
 }
 
 @media (min-width: 1600px) {
-	html { font-size: 20px; }
-	header, main { max-width: 1500px; }
+	html { font-size: 125%; }
+	header, main { max-width: 93.75rem; }
 }
 
 @media (max-width: 1200px) {
@@ -659,8 +662,6 @@ footer {
 	.book-card img { max-width: 100%; }
 	.book-info h3 { margin: 0.5rem 0.25rem 0; }
 	.book-info p { margin: 0.25rem; }
-	.details-sidebar { flex: 2; }
-	.details-content { width: 80%; }
 }
 
 @media (max-width: 768px) {
@@ -668,10 +669,9 @@ footer {
 	main h2 { margin: 1rem 0 1.25rem; }
 	.modal-content { width: 90%; padding: 1rem; }
 	.book-grid { grid-template-columns: repeat(auto-fill, minmax(11.875rem, 1fr)); gap: 0.625rem; }
-	#back-button { display: block; margin: 1.8rem auto; }
-	.details-wrapper { flex-direction: column; align-items: center; gap: 1.5rem; text-align: center; }
-	.details-sidebar { max-width: none; text-align: center; width: 60%; margin: 0 auto; }
-	#book-details-container img { width: 80%; max-width: none; margin: 0 auto; }
+	.details-wrapper { gap: 1.3rem; }
+	.details-sidebar { max-width: none; text-align: center; }
+	.details-sidebar img { margin: 0; }
 	#history-data-container { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
@@ -682,18 +682,23 @@ footer {
 	.book-grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; padding: 0; }
 	.book-card img { max-width: 100%; }
 	.book-info h3 { font-size: 0.95rem; }
-	#back-button { display: block; margin: 1.9rem auto; }
-	.details-sidebar { width: 70%; margin: 0 auto; }
+	.details-sidebar { margin: 0 auto; }
 	#history-data-container { grid-template-columns: repeat(1, minmax(0, 1fr)); width: 90%; }
 	.history-item { width: 100%; margin: 0 auto; }
-	.history-book { font-size: 15px; }
+	.history-book { font-size: 0.9375rem; }
+}
+
+@media (max-width: 480px) {
+	#book-details-container { width: 100%; max-width: none; }
+	.details-wrapper { flex-direction: column; align-items: center; }
+	.details-content h4 { display: block; width: fit-content; margin: 0.2rem auto 0.8rem; }
+	.details-sidebar img { width: clamp(11.25rem, 75%, 17.5rem); }
 }
 
 @media (max-width: 320px) {
 	header h1 { font-size: 1.8rem; }
 	.book-grid { grid-template-columns: 1fr; gap: 1.25rem; }
 	.book-card { padding: 0.625rem; }
-	.details-sidebar { width: 90%; }
 	.history-card { gap: 0; }
 	.card-content { transform: translateX(8px); }
 	.history-book { font-size: 0.9375rem; }

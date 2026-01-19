@@ -10,6 +10,7 @@ const searchInput = document.getElementById('search-input');
 const quizSection = document.getElementById('quiz-section');
 
 let currentQuestionIndex = 0;
+let savedScrollPosition = 0;
 
 export const renderBookCatalog = (bookToRender = bookCatalog) => {
 	if (bookToRender.length === 0) {
@@ -89,6 +90,9 @@ const findBookById = (bookId) => {
 };
 
 const renderBookDetails = (book) => {
+	savedScrollPosition = window.scrollY;
+	window.scrollTo(0, 0);
+
 	catalogSection.classList.add('hidden');
 	detailsSection.classList.remove('hidden');
 
@@ -160,10 +164,10 @@ const switchToGenre = () => {
 };
 
 const hideBookDetails = () => {
-	appState.selectedGenre = 'All';
 	showCatalog();
 	renderFilterButtons();
 	updateDisplay();
+	window.scrollTo(0, savedScrollPosition);
 };
 
 const startQuiz = () => {

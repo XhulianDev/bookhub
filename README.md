@@ -22,7 +22,7 @@ Book Hub is an interactive web application designed to help users explore curate
 
 ## Folder Structure
 
-* `/assets` - Book covers and visual assets.
+* `assets/` - Book covers and visual assets.
 * `app.js` - Main application logic and UI rendering.
 * `logic.js` - Search and filtering algorithms.
 * `state.js` - Centralized app state management.

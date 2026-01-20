@@ -12,7 +12,7 @@ Book Hub is an interactive web application designed to help users explore curate
 
 ## Demo
 
-[View Live](https://XhulianDev.github.io/quiz-app/)
+[View Live](https://XhulianDev.github.io/bookhub/)
 
 ## Technology Stack
 

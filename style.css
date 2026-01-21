@@ -195,18 +195,17 @@ header h1 #hero-accent {
 
 #history-data-container li:only-child {
 	grid-column: 1 / -1;
-	text-align: center;
-	padding: 3rem 1rem;
 	color: #111;
 	font-size: 1.1rem;
 	font-style: italic;
 	list-style: none;
 }
 
-#history-data-container li:only-child::before {
+#history-data-container .empty-msg::before {
 	content: '\1F4DA';
 	display: block;
 	font-size: 2rem;
+	text-align: center;
 	margin-bottom: 1rem;
 	opacity: 0.9;
 }

@@ -341,7 +341,7 @@ const renderHistory = () => {
 	const reversedHistory = [...appState.quizHistory].reverse();
 
 	if (reversedHistory.length === 0) {
-		dataContainer.innerHTML = `<li>No quiz attempts found</li>`;
+		dataContainer.innerHTML = `<li class="empty-msg">No quiz attempts found</li>`;
 		if (clearBtn) clearBtn.style.display = "none";
 		return;
 	}

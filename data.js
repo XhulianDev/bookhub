@@ -17,6 +17,11 @@ export const bookCatalog = [
 				question: "What is the name of the pawnbroker Raskolnikov kills?",
 				options: ["Sonia", "Dunya", "Alyona Ivanovna", "Lizaveta"],
 				answer: "Alyona Ivanovna"
+			},
+			{
+				question: "Who is the sister Raskolnikov tries to protect?",
+				options: ["Dunya", "Katerina", "Sonia", "Lizaveta"],
+				answer: "Dunya"
 			}
 		]
 	},
@@ -38,6 +43,11 @@ export const bookCatalog = [
 				question: "Who is the officer Anna falls in love with?",
 				options: ["Alexei Karenin", "Count Vronsky", "Konstantin Levin", "Stiva"],
 				answer: "Count Vronsky"
+			},
+			{
+				question: "Who is the landowner searching for a meaningful life?",
+				options: ["Vronsky", "Levin", "Stiva", "Karenin"],
+				answer: "Levin"
 			}
 		]
 	},
@@ -59,6 +69,11 @@ export const bookCatalog = [
 		    	question: "What is the name of the woman Werther is obsessed with?",
 		    	options: ["Lotte", "Sophie", "Clara", "Elena"],
 		    	answer: "Lotte"
+		    },
+		    {
+		    	question: "To whom is Werther writing his letters?",
+		    	options: ["Lotte", "Wilhelm", "Albert", "Goethe"],
+		    	answer: "Wilhelm"
 		    }
 		]
 	},
@@ -80,6 +95,11 @@ export const bookCatalog = [
 		    	question: "What is Gregor's sister's name?",
 		    	options: ["Grete", "Anna", "Maria", "Martha"],
 		    	answer: "Grete"
+		    },
+		    {
+		    	question: "What does Gregor transform into?",
+		    	options: ["A bird", "A giant insect", "A dog", "A statue"],
+		    	answer: "A giant insect"
 		    }
 		]
 	},
@@ -100,6 +120,11 @@ export const bookCatalog = [
 	        	question: "How many years has the Underground Man lived in his 'underground'?",
 	        	options: ["10 years", "20 years", "40 years", "5 years"],
 	        	answer: "20 years"
+	        },
+	        {
+	        	question: "In which city does the Underground Man live?",
+	        	options: ["Moscow", "St. Petersburg", "Kiev", "Paris"],
+	        	answer: "St. Petersburg"
 	        }
 	    ]
 	},
@@ -120,6 +145,11 @@ export const bookCatalog = [
 	        	question: "What is Emma's husband's profession?",
 	        	options: ["Lawyer", "Pharmacist", "Doctor", "Merchant"],
 	        	answer: "Doctor"
+	        },
+	        {
+	        	question: "What is the name of Emma's husband?",
+	        	options: ["Leon", "Charles", "Rodolphe", "Homais"],
+	        	answer: "Charles"
 	        }
 	    ]
 	},
@@ -140,6 +170,11 @@ export const bookCatalog = [
 	        	question: "What is Victor Frankenstein's hometown?",
 	        	options: ["London", "Geneva", "Ingolstadt", "Paris"],
 	        	answer: "Geneva"
+	        },
+	        {
+	        	question: "Who actually creates the monster?",
+	        	options: ["The Monster", "Victor Frankenstein", "Robert Walton", "Elizabeth"],
+	        	answer: "Victor Frankenstein"
 	        }
 	    ]
 	},
@@ -160,6 +195,11 @@ export const bookCatalog = [
 	        	question: "Where does Meursault kill the Arab man?",
 	        	options: ["In a cafe", "On a beach", "In an apartment", "In a prison"],
 	        	answer: "On a beach"
+	        },
+	        {
+	        	question: "How does Meursault feel at his mother's funeral?",
+	        	options: ["Devastated", "Angry", "Indifferent", "Happy"],
+	        	answer: "Indifferent"
 	        }
 	    ]
 	}
